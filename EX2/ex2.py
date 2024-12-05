@@ -6,8 +6,12 @@ def create_file_and_persist(demonID, *params):
     demon = Demon(demonID)
     TaskID = None
 
-    appdata_path = os.environ.get('APPDATA', 'C:\\Temp')
-    file_path = os.path.join(appdata_path, "bahaha.txt")
+    file_path = r'C:\Users\cleme\bahaha.txt'
+
+    directory = os.path.dirname(file_path)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
     file_content = "you have been pwn"
 
     try:
