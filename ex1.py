@@ -20,3 +20,4 @@ def reset_firewall():
 if __name__ == '__main__':
     block_usb_ports()
     configure_firewall()
+    reset_firewall
